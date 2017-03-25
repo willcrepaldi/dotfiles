@@ -1,0 +1,12 @@
+" Javascript configurations
+"--------------------------
+
+" au BufRead,BufNewFile *.json set filetype=json
+augroup filetype_javascript
+  " Clear old autocmds in group
+  autocmd!
+  " Set syntax javascript to coffee script files
+  autocmd FileType javascript nnoremap <leader>n :Dispatch node %<cr>
+augroup END
+
+" vim:ft=vim

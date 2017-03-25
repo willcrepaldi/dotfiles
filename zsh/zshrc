@@ -1,0 +1,84 @@
+# 
+#          _     
+#  _______| |__  
+# |_  / __| '_ \ 
+#  / /\__ \ | | |
+# /___|___/_| |_|
+#                
+# 
+
+export VISUAL='vim'
+export EDITOR=$VISUAL
+
+export BUNDLER_EDITOR='vim'
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+export ZSH=/Users/pablobfonseca/.oh-my-zsh
+plugins=(brew zsh-syntax-highlighting)
+
+ZSH_THEME="cjt"
+source $ZSH/oh-my-zsh.sh
+
+# Allow completing of the remainder of a command
+bindkey "^N" insert-last-word
+
+# Save a ton of history
+HISTSIZE=20000
+HISTFILE=~/.zsh_history
+SAVEHIST=20000
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=200"
+
+# Enable completion
+autoload -U compinit
+compinit
+
+# Add paths
+export DOTFILES=$HOME/dotfiles
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/pablobfonseca/.rvm/bin"
+export PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export MANPATH="/usr/local/man:$MANPATH"
+export PATH=/usr/local/share/npm/bin:$PATH
+# /usr/local/opt/android-sdk
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+
+# Source another files
+for zsh_source in /Users/pablobfonseca/.zsh/config/*.zsh; do
+  source $zsh_source
+done
+
+# Dont' expand aliases _before_ completion
+setopt complete_aliases
+
+# Add current directory bin
+export PATH=$PATH:bin
+
+# Heroku toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Edit the current line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+# Auto-suggestions
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Cdpath for quick navigation
+setopt auto_cd
+cdpath=($HOME/code $HOME/dotfiles)
+
+attach_to_tmux
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

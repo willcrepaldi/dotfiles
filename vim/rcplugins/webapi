@@ -1,0 +1,5 @@
+" Webapi
+
+Plug 'mattn/webapi-vim'
+
+" vim:ft=vim

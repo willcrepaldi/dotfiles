@@ -1,0 +1,7 @@
+" Snipmate - aims to provide support for textual snippets
+
+Plug 'garbas/vim-snipmate'
+
+nnoremap <leader>sn :e ~/.vim/snippets/
+
+" vim:ft=vim

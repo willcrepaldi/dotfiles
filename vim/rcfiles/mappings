@@ -1,0 +1,113 @@
+" vim: ft=vim
+
+" Mappings
+" ----------------------
+nnoremap K :exe 'Ag' expand('<cword>')<cr>
+
+" Opens the file explorer in a split window
+nnoremap <leader>of :Sex<cr>
+
+" select last paste in visual mode
+nnoremap gp `[v`]
+
+" Change vertically split to horizonally
+nnoremap <leader>fh <C-w>t<C-w>K
+
+" Change horizonally split to vertically
+nnoremap <leader>fv <C-w>t<C-w>H
+
+" Make Y yank to end of line (like D, or C)
+nmap Y y$
+
+" Insert a caller into Ruby code
+nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+
+" Source vimrc
+nnoremap <silent><leader>sv :source ~/.vim/vimrc<cr>
+
+" Toggle paste mode on and off
+nnoremap <leader>pp :set paste<cr>o<esc>"*]p:set nopaste<cr>
+
+nnoremap ; :
+
+" Indent the whole file
+nnoremap <Leader>i mmgg=G`m
+
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+nnoremap <space>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+nnoremap <space>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+nnoremap <space>v :vsplit <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+nnoremap <space>r :r <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+nnoremap <space>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+nnoremap <space>sav :sav <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+
+" Use j/k to start, then scroll through autocomplete options
+inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("\<C-x><c-n>"))
+inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("\<C-x><c-k>"))
+
+" Close the quickfix window
+nnoremap <space><space> :ccl<cr>
+
+" Let's be reasonable, shall we?
+nnoremap k gk
+nnoremap j gj
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+
+" resize panes
+nnoremap <silent> <Left> :vertical resize +5<cr>
+nnoremap <silent> <Right> :vertical resize -5<cr>
+nnoremap <silent> <Up> :resize +5<cr>
+nnoremap <silent> <Down> :resize -5<cr>
+
+" Disable arrows
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
+
+" Scroll the viewport faster
+nnoremap <C-e> 7<C-e>
+nnoremap <C-y> 7<C-y>
+vnoremap <C-e> 7<C-e>
+vnoremap <C-y> 7<C-y>
+
+" Disable mouse scroll wheel
+nnoremap <ScrollWheelUp> <nop>
+nnoremap <S-ScrollWheelUp> <nop>
+nnoremap <C-ScrollWheelUp> <nop>
+nnoremap <ScrollWheelDown> <nop>
+nnoremap <S-ScrollWheelDown> <nop>
+nnoremap <C-ScrollWheelDown> <nop>
+nnoremap <ScrollWheelLeft> <nop>
+nnoremap <S-ScrollWheelLeft> <nop>
+nnoremap <C-ScrollWheelLeft> <nop>
+nnoremap <ScrollWheelRight> <nop>
+nnoremap <S-ScrollWheelRight> <nop>
+nnoremap <C-ScrollWheelRight> <nop>
+
+" Coding notes
+nnoremap <leader>cn :Sexplore ~/Dropbox/notes/Upcase/<cr>
+
+" Thought notes
+nnoremap <leader>tn :e ~/Dropbox/notes/thoughts.txt<cr>
+
+" Open Gemfile
+nnoremap <leader>og :e Gemfile<cr>
+
+" Map jk as Esc
+inoremap jk <Esc>
+
+" Jump to start and end of line using the home row keys
+nmap 0 ^
+
+" Tab/shift-tab to indent/outdent in visual mode.
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
